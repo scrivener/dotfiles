@@ -9,9 +9,15 @@
 :map ;g; :%s//g<Left><Left>
 :map <Tab> :bn<Enter>
 
+"Bind C-n to noh to remove highlighting
+:noremap <silent> <C-N> :silent noh<CR>:w
+
 "ignore case, but don't ignore it if there are uppercase letters involved
 :set ic   
 :set scs 
+
+"better highlighting and colors for dark background
+:set background=dark
 
 set directory^=$HOME/.vim_swap//    "put all swap files together
 
@@ -25,3 +31,6 @@ if has("autocmd")
             " ...
 endif
 
+augroup filetypedetect
+  au BufNewFile,BufRead *.pig set filetype=pig syntax=pig
+augroup END
