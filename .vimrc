@@ -1,6 +1,6 @@
 :set expandtab
-:set tabstop=4
-:set shiftwidth=4
+:set tabstop=2
+:set shiftwidth=2
 :set incsearch
 :set hlsearch
 
@@ -8,6 +8,9 @@
 :map ;; :s//g<Left><Left>
 :map ;g; :%s//g<Left><Left>
 :map <Tab> :bn<Enter>
+
+au BufNewFile,BufRead *.hx            setf haxe
+au BufNewFile,BufRead *.hx            set smartindent
 
 "Bind C-n to noh to remove highlighting
 :noremap <silent> <C-N> :silent noh<CR>:w
@@ -34,3 +37,7 @@ endif
 augroup filetypedetect
   au BufNewFile,BufRead *.pig set filetype=pig syntax=pig
 augroup END
+
+set wildmenu
+"repeat visual mode selections
+vnoremap . :normal .<cr>  
