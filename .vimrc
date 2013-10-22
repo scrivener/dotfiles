@@ -8,6 +8,8 @@ if has("autocmd")
             " ...
 endif
 
+let g:airline#extensions#tabline#enabled = 1
+
 execute pathogen#infect()
 set rtp+=/home/lerner/.vim/bundle/powerline/bindings/vim
 nnoremap :gun :GundoToggle<CR>
@@ -26,12 +28,35 @@ set nojoinspaces
 
 set colorcolumn=80
 
-
-
 map \\\ :w<Enter>
 map ;; :s//g<Left><Left>
 map ;g; :%s//g<Left><Left>
 map <Tab> :bn<Enter>
+
+map <leader>cd :cd %:p:h<cr>
+
+if has("autocmd")
+    " Helps if you have to use another editor on the same file
+    au FileChangedShell * Warn "File has been changed outside of Vim."
+endif
+
+" Folding (spacebar toggles) {{{
+" Spacebar toggles a fold, zi toggles all folding, zM closes all folds
+noremap  <silent>  <space> :exe 'silent! normal! za'.(foldlevel('.')?'':'l')<cr>
+
+" Window layout
+set showmode
+set cursorline
+set showmode
+set scrolloff=1
+set laststatus=2
+set noshowmode
+set ttyfast
+
+"to fix the font and lot of strange characters and colors
+"set encoding=utf-8
+set t_Co=256
+set fillchars+=stl:\ ,stlnc:\
 
 au BufNewFile,BufRead *.hx            setf haxe
 au BufNewFile,BufRead *.hx            set smartindent
@@ -45,6 +70,8 @@ set ignorecase
 set smartcase
 set incsearch
 set hlsearch
+
+map <leader>lw :set nowrap! <CR>
 
 "better highlighting and colors for dark background
 set background=dark
