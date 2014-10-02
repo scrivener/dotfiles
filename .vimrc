@@ -8,16 +8,29 @@ if has("autocmd")
             " ...
 endif
 
+syntax enable
+
+
+
+"Only require a single press of leader to activate easymotion.
+map <leader> <Plug>(easymotion-prefix)  
+
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
 
 execute pathogen#infect()
 set rtp+=/home/lerner/.vim/bundle/powerline/bindings/vim
 nnoremap :gun :GundoToggle<CR>
 
+cd ~/Dropbox/code/dev/rangzen/
+" set foldmethod=syntax
+" hi Folded guifg=Black guibg=slategray4
+
 set showmatch
 set undofile
 set undodir=$HOME/.vim/undodir
 
+set fillchars=""
 
 set expandtab         "turn tabs into spaces
 set smarttab          "helps with backspacing after tab
@@ -29,8 +42,8 @@ set nojoinspaces
 set colorcolumn=80
 
 map \\\ :w<Enter>
-map ;; :s//g<Left><Left>
-map ;g; :%s//g<Left><Left>
+" map ;; :s//g<Left><Left>
+map '' :s//g<Left><Left>
 map <Tab> :bn<Enter>
 
 map <leader>cd :cd %:p:h<cr>
@@ -73,6 +86,8 @@ set hlsearch
 
 map <leader>lw :set nowrap! <CR>
 
+" map <leader>l :w<CR> :!lime test ~/Dropbox/code/GenericRoguelike/ flash<CR>
+
 "better highlighting and colors for dark background
 set background=dark
 
@@ -88,3 +103,17 @@ set wildmenu
 "repeat visual mode selections
 vnoremap . :normal .<cr>  
 set relativenumber
+
+inoremap jk <Esc>
+nnoremap <Space><Space> :w<cr> 
+
+set ruler
+
+nnoremap <leader>ji :JavaImport<CR>
+nnoremap <leader>jc :JavaCorrect<CR>
+
+nmap ``` <Plug>Kwbd
+"autocmd BufNewFile,BufRead *.json set ft=javascript
+
+"Turn off folding when editing Git commit messages.
+autocmd Filetype gitcommit set foldmethod=manual

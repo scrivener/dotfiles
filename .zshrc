@@ -37,6 +37,23 @@ unsetopt correct_all
 HOME_BIN_PATH=~/bin
 export EDITOR="vim"
 
+# Android SDK path
+ANDROID_TOOLS_PATH=~/dev/adt/sdk/tools
+ANDROID_PLATFORM_TOOLS_PATH=~/dev/adt/sdk/platform-tools
+export SDK_ROOT=/Users/lerner/dev/adt/sdk/
+export NDK_ROOT=/Users/lerner/dev/ndk/
+export ANDROID_NDK=/Users/lerner/dev/ndk/
+
+LATEX_PATH="/usr/local/texlive/2013/bin"
+
+# Chromium git tools
+GIT_CL_ETC_PATH=~/depot_tools
+
+# Gradle
+export GRADLE_HOME="/Users/lerner/Downloads/gradle-1.11"
+
+export PATH="/usr/local/bin/:$LATEX_PATH:$GIT_CL_ETC_PATH:$ANDROID_SDK_PATH:$ANDROID_TOOLS_PATH:$ANDROID_PLATFORM_TOOLS_PATH:$HOME_BIN_PATH:$GRADLE_HOME/bin:$PATH"
+
 . /etc/zsh_command_not_found
 
 # Aliases
@@ -46,9 +63,9 @@ alias pssh="parallel-ssh"
 alias db="dropbox.py"
 alias fndate='date +"%Y_%m_%d"'
 alias mysqldoosra="mysql --host=doosra.cs.washington.edu --user=lerner --password=lerner_rocks\! censorship_measurement"
+alias tool='python -mjson.tool'
 # Useless comment
 #
-bindkey -v
 
 bindkey '^P' up-history
 bindkey '^N' down-history
@@ -56,6 +73,10 @@ bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
+
+bindkey '^f' forward-word
+bindkey '^b' backward-word
+
 
 # show git branch/tag, or name-rev if on detached head
 parse_git_branch() {
@@ -85,3 +106,11 @@ function zle-line-init zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 export KEYTIMEOUT=1
+# added by Anaconda 1.8.0 installer
+export PATH="/Users/lerner/anaconda/bin:$PATH"
+
+export CLASSPATH="$CLASSPATH:/Users/lerner/mason/"
+
+# The next line updates PATH for the Google Cloud SDK.
+source '/Users/lerner/google-cloud-sdk/path.zsh.inc'
+
