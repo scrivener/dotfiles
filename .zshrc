@@ -6,6 +6,7 @@ setopt appendhistory autocd extendedglob
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/adam/.zshrc'
+alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 
 autoload -Uz compinit
 compinit
@@ -52,9 +53,9 @@ GIT_CL_ETC_PATH=~/depot_tools
 # Gradle
 export GRADLE_HOME="/Users/lerner/Downloads/gradle-1.11"
 
-export PATH="/usr/local/bin/:$LATEX_PATH:$GIT_CL_ETC_PATH:$ANDROID_SDK_PATH:$ANDROID_TOOLS_PATH:$ANDROID_PLATFORM_TOOLS_PATH:$HOME_BIN_PATH:$GRADLE_HOME/bin:$PATH"
+export PATH="/usr/local/bin:$LATEX_PATH:$GIT_CL_ETC_PATH:$ANDROID_SDK_PATH:$ANDROID_TOOLS_PATH:$ANDROID_PLATFORM_TOOLS_PATH:$HOME_BIN_PATH:$GRADLE_HOME/bin:$PATH"
 
-. /etc/zsh_command_not_found
+# . /etc/zsh_command_not_found
 
 # Aliases
 alias mmi="make && sudo make install"
@@ -64,6 +65,8 @@ alias db="dropbox.py"
 alias fndate='date +"%Y_%m_%d"'
 alias mysqldoosra="mysql --host=doosra.cs.washington.edu --user=lerner --password=lerner_rocks\! censorship_measurement"
 alias tool='python -mjson.tool'
+alias home='cd "$(git rev-parse --show-toplevel)"'
+
 # Useless comment
 #
 
@@ -106,11 +109,12 @@ function zle-line-init zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 export KEYTIMEOUT=1
+
+export GOPATH=$HOME/Dropbox/code/go
+
 # added by Anaconda 1.8.0 installer
 export PATH="/Users/lerner/anaconda/bin:$PATH"
+export PATH=$PATH:$GOPATH/bin
 
-export CLASSPATH="$CLASSPATH:/Users/lerner/mason/"
-
-# The next line updates PATH for the Google Cloud SDK.
-source '/Users/lerner/google-cloud-sdk/path.zsh.inc'
-
+export NVM_DIR="/Users/lerner/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

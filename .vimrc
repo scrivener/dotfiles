@@ -10,10 +10,31 @@ endif
 
 syntax enable
 
+:set visualbell
 
+nnoremap <silent> <F5> :!clear;%<CR>
+
+let g:CommandTTraverseSCM = 'pwd'
+let g:CommandTWildIgnore=&wildignore . ",**/venv/*,node_modules/*"
+nnoremap <leader>f :CommandTFlush<CR>
+
+" let g:jsx_ext_required = 0
 
 "Only require a single press of leader to activate easymotion.
 map <leader> <Plug>(easymotion-prefix)  
+
+"Activate CtrlP with <Leader>p
+map <leader>p :CtrlP<CR>
+"let g:ctrlp_custom_ignore = 'buck-out|.git$'
+"   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+"   \ 'file': '\v\.(exe|so|dll)$',
+"   \ 'link': 'some_bad_symbolic_links',
+"   \ }
+" unlet g:ctrlp_user_command
+let g:ctrlp_reuse_window = 1
+let g:ctrlp_max_files=60000
+let g:ctrlp_max_depth=40
+set wildignore+=*.class,*.trace,*__*
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
@@ -22,7 +43,8 @@ execute pathogen#infect()
 set rtp+=/home/lerner/.vim/bundle/powerline/bindings/vim
 nnoremap :gun :GundoToggle<CR>
 
-cd ~/Dropbox/code/dev/rangzen/
+cd ~/Dropbox/code/tracking/
+" cd ~/rangzen/
 " set foldmethod=syntax
 " hi Folded guifg=Black guibg=slategray4
 
@@ -103,6 +125,7 @@ set wildmenu
 "repeat visual mode selections
 vnoremap . :normal .<cr>  
 set relativenumber
+set number
 
 inoremap jk <Esc>
 nnoremap <Space><Space> :w<cr> 
@@ -111,6 +134,8 @@ set ruler
 
 nnoremap <leader>ji :JavaImport<CR>
 nnoremap <leader>jc :JavaCorrect<CR>
+
+set bt=
 
 nmap ``` <Plug>Kwbd
 "autocmd BufNewFile,BufRead *.json set ft=javascript
